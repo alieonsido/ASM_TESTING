@@ -1,0 +1,25 @@
+TITLE  Add and Subtract(TEST.asm)
+INCLUDE Irvine32.inc
+INCLUDELIB Irvine32.lib
+INCLUDELIB Kernel32.Lib
+INCLUDELIB User32.Lib
+
+.data
+arrayD DWORD 10000h,20000h,30000h
+.code
+main PROC
+mov esi,OFFSET arrayD
+mov eax,[esi] ;First number 10000h
+call DumpRegs
+add esi,2
+add eax,[esi] ;Second number will wrong
+call DumpRegs
+add esi,1
+add eax,[esi] ;Third number will wrong
+call DumpRegs
+add esi,1
+add eax,[esi] ;Fourth number is 30000h + before wrong number
+call DumpRegs
+exit
+main ENDP
+END main
